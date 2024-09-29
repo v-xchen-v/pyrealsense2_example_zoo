@@ -1,3 +1,4 @@
 pyglet==1.5.27
 opencv-python
 pyrealsense2
+open3d
