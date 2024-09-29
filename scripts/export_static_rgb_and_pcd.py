@@ -7,6 +7,8 @@
 ##                  Export to PLY                  ##
 #####################################################
 
+## Usage: python export_static_rgb_and_pcd.py --filename 1
+
 # First import the library
 import pyrealsense2 as rs
 import open3d as o3d
