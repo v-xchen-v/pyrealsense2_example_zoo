@@ -18,7 +18,7 @@ import argparse
 import cv2
 
 argparser = argparse.ArgumentParser()
-argparser.add_argument("--filename", type=str, default="1")
+argparser.add_argument("--filename", type=str, default="6")
 args = argparser.parse_args()
 
 # Declare pointcloud object, for calculating pointclouds and texture mappings
@@ -30,9 +30,9 @@ points = rs.points()
 pipe = rs.pipeline()
 config = rs.config()
 # Enable depth stream
-config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+config.enable_stream(rs.stream.depth, 1280, 720, rs.format.z16, 30)
 # Enable color stream
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 
 # Start streaming with chosen configuration
 pipe.start(config)
