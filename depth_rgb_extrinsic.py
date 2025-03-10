@@ -1,6 +1,6 @@
 import pyrealsense2 as rs
 import numpy as np
-
+from scipy.spatial.transform import Rotation as R
 pipeline = rs.pipeline()
 config = rs.config()
 pipeline.start(config)
@@ -21,5 +21,8 @@ T_depth_to_rgb[0:3, 0:3] = np.reshape(depth_to_rgb_extrinsics.rotation, [3, 3])
 T_depth_to_rgb[0:3, 3] = depth_to_rgb_extrinsics.translation
 # npdepth_to_rgb_extrinsics.rotation
 # depth_to_rgb_extrinsics.translation
-np.save('T_depth_to_rgb.npy', T_depth_to_rgb)
+print('translation:', depth_to_rgb_extrinsics.translation)
+print('rotation:', R.from_matrix(np.reshape(depth_to_rgb_extrinsics.rotation, [3, 3])).as_euler('xyz', degrees=True))
+np.save('./T_depth_to_rgb.npy', T_depth_to_rgb)
+
 pass

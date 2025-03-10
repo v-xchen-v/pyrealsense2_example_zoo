@@ -58,6 +58,8 @@ class AppState:
         return np.dot(Ry, Rx).astype(np.float32)
 
     @property
+    
+    
     def pivot(self):
         return self.translation + np.array((0, 0, self.distance), dtype=np.float32)
 
@@ -95,6 +97,7 @@ w, h = depth_intrinsics.width, depth_intrinsics.height
 
 # Processing blocks
 pc = rs.pointcloud()
+
 decimate = rs.decimation_filter()
 decimate.set_option(rs.option.filter_magnitude, 2 ** state.decimate)
 colorizer = rs.colorizer()
@@ -307,6 +310,8 @@ while True:
         points = pc.calculate(depth_frame)
         pc.map_to(mapped_frame)
 
+        points.export_to_ply('point_cloud.ply', color_frame)
+        
         # Pointcloud data to arrays
         v, t = points.get_vertices(), points.get_texture_coordinates()
         verts = np.asanyarray(v).view(np.float32).reshape(-1, 3)  # xyz
